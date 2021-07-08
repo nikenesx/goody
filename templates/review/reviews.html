@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список отзывов</title>
+</head>
+<body>
+    {% for e in reviews %}
+        <div style="padding: 10px; border: 1px solid black; border-radius: 7px; margin-bottom: 10px; width: 500px;">
+            {% if e.user is not None %}
+                <h4>{{ e.user.username }}</h4>
+            {% endif %}
+            <h4>{{ e.review_date|date:"d.m.Y" }}</h4>
+            <h3>{{ e.review_doctor.doctor_name }}</h3>
+            {% for r in e.review_doctor.specialty.all %}
+                <h5>{{ r.specialty_name }}</h5>
+            {% endfor %}
+            <div>{{ e.processed_rev_text|safe }}</div>
+        </div>
+    {% endfor %}
+</body>
+</html>

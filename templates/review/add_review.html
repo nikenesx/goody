@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Оставить отзыв</title>
+</head>
+<body>
+    <h1>Оставить отзыв</h1>
+    <h2>{{ doctor.doctor_name }}</h2>
+    <div>{{ specialty }}</div>
+    <form action="" name="review_form" id="form" method="post" onsubmit="return is_valid()">
+        {% csrf_token %}
+        <textarea name="review_text" id="field" style="resize: none; height: 200px; width: 300px"></textarea><br>
+        <input type="submit" name="bth" value="Отправить отзыв">
+    </form>
+    <script type="text/javascript">
+        function is_valid() {
+            if (document.getElementById('field').value.length < 10)
+            {
+                alert('Минимальная длина отзыва 10 символов')
+                return false
+            }
+            else return true }
+    </script>
+</body>
+</html>
